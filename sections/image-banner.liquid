@@ -120,15 +120,30 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
+            {%- assign men_heading = block.settings.men_heading | default: block.settings.heading -%}
+            {%- assign women_heading = block.settings.women_heading | default: block.settings.heading -%}
+            {%- assign kids_heading = block.settings.kids_heading | default: block.settings.heading -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+              data-mode-html
+              data-men-html="{{ men_heading }}"
+              data-women-html="{{ women_heading }}"
+              data-kids-html="{{ kids_heading }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {{ men_heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-              <p>{{ block.settings.text }}</p>
+            {%- assign men_text = block.settings.men_text | default: block.settings.text -%}
+            {%- assign women_text = block.settings.women_text | default: block.settings.text -%}
+            {%- assign kids_text = block.settings.kids_text | default: block.settings.text -%}
+            <div class="banner__text rte {{ block.settings.text_style }}"
+              data-mode-html
+              data-men-html="{{ men_text }}"
+              data-women-html="{{ women_text }}"
+              data-kids-html="{{ kids_text }}"
+              {{ block.shopify_attributes }}>
+              <p>{{ men_text }}</p>
             </div>
           {%- when 'buttons' -%}
             <div
@@ -136,6 +151,9 @@
               {{ block.shopify_attributes }}
             >
               {%- if block.settings.button_label_1 != blank -%}
+                {%- assign men_btn = block.settings.men_button_label_1 | default: block.settings.button_label_1 -%}
+                {%- assign women_btn = block.settings.women_button_label_1 | default: block.settings.button_label_1 -%}
+                {%- assign kids_btn = block.settings.kids_button_label_1 | default: block.settings.button_label_1 -%}
                 <a
                   {% if block.settings.button_link_1 == blank %}
                     role="link" aria-disabled="true"
@@ -143,8 +161,12 @@
                     href="{{ block.settings.button_link_1 }}"
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                  data-mode-content="text"
+                  data-men-content="{{ men_btn | escape }}"
+                  data-women-content="{{ women_btn | escape }}"
+                  data-kids-content="{{ kids_btn | escape }}"
                 >
-                  {{- block.settings.button_label_1 | escape -}}
+                  {{- men_btn | escape -}}
                 </a>
               {%- endif -%}
               {%- if block.settings.button_label_2 != blank -%}
@@ -176,9 +198,28 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "Mode-Specific Banner Images"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "men_image",
+      "label": "Men Mode Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "women_image",
+      "label": "Women Mode Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "kids_image",
+      "label": "Kids Mode Banner Image"
     },
     {
       "type": "image_picker",
@@ -373,6 +414,24 @@
           "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
         },
         {
+          "type": "text",
+          "id": "men_heading",
+          "label": "Men Mode Heading",
+          "default": "ENGINEERED FOR PERFORMANCE"
+        },
+        {
+          "type": "text",
+          "id": "women_heading",
+          "label": "Women Mode Heading",
+          "default": "Discover Your Style"
+        },
+        {
+          "type": "text",
+          "id": "kids_heading",
+          "label": "Kids Mode Heading",
+          "default": "Adventure Starts Here! 🚀"
+        },
+        {
           "type": "select",
           "id": "heading_size",
           "options": [
@@ -414,6 +473,21 @@
           "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
         {
+          "type": "text",
+          "id": "men_text",
+          "label": "Men Mode Subtext"
+        },
+        {
+          "type": "text",
+          "id": "women_text",
+          "label": "Women Mode Subtext"
+        },
+        {
+          "type": "text",
+          "id": "kids_text",
+          "label": "Kids Mode Subtext"
+        },
+        {
           "type": "select",
           "id": "text_style",
           "options": [
@@ -450,6 +524,24 @@
           "default": "t:sections.image-banner.blocks.buttons.settings.button_label_1.default",
           "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
           "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "text",
+          "id": "men_button_label_1",
+          "label": "Men Mode Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "text",
+          "id": "women_button_label_1",
+          "label": "Women Mode Button Text",
+          "default": "Explore Collection"
+        },
+        {
+          "type": "text",
+          "id": "kids_button_label_1",
+          "label": "Kids Mode Button Text",
+          "default": "Let's Go! 🎉"
         },
         {
           "type": "url",

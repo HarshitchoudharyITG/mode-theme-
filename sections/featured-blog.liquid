@@ -31,6 +31,10 @@
         <h2
           id="SectionHeading-{{ section.id }}"
           class="blog__title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          data-mode-content="text"
+          data-men-content="JOURNAL"
+          data-women-content="From Our Blog"
+          data-kids-content="Fun Reads! 📚"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}

@@ -32,22 +32,36 @@
         aria-label="{{ 'sections.header.announcement' | t }}"
         {{ section.blocks.first.shopify_attributes }}
       >
-        {%- if section.blocks.first.settings.text != blank -%}
+        {%- comment -%} Mode-aware announcement text {%- endcomment -%}
+        {%- assign men_text = section.settings.men_announcement | default: section.blocks.first.settings.text -%}
+        {%- assign women_text = section.settings.women_announcement | default: section.blocks.first.settings.text -%}
+        {%- assign kids_text = section.settings.kids_announcement | default: section.blocks.first.settings.text -%}
+        {%- assign men_link = section.settings.men_announcement_link | default: section.blocks.first.settings.link -%}
+        {%- assign women_link = section.settings.women_announcement_link | default: section.blocks.first.settings.link -%}
+        {%- assign kids_link = section.settings.kids_announcement_link | default: section.blocks.first.settings.link -%}
+
+        {%- if section.blocks.first.settings.link != blank -%}
+          <a
+            href="{{ section.blocks.first.settings.link }}"
+            class="announcement-bar__link link link--text focus-inset animate-arrow"
+            data-mode-link
+            data-men-link="{{ men_link }}"
+            data-women-link="{{ women_link }}"
+            data-kids-link="{{ kids_link }}"
+          >
+        {%- endif -%}
+        <p class="announcement-bar__message h5"
+           data-mode-content="text"
+           data-men-content="{{ men_text | escape }}"
+           data-women-content="{{ women_text | escape }}"
+           data-kids-content="{{ kids_text | escape }}">
+          <span>{{ men_text | escape }}</span>
           {%- if section.blocks.first.settings.link != blank -%}
-            <a
-              href="{{ section.blocks.first.settings.link }}"
-              class="announcement-bar__link link link--text focus-inset animate-arrow"
-            >
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
           {%- endif -%}
-          <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
-            {%- if section.blocks.first.settings.link != blank -%}
-              {{- 'icon-arrow.svg' | inline_asset_content -}}
-            {%- endif -%}
-          </p>
-          {%- if section.blocks.first.settings.link != blank -%}
-            </a>
-          {%- endif -%}
+        </p>
+        {%- if section.blocks.first.settings.link != blank -%}
+          </a>
         {%- endif -%}
       </div>
     {%- elsif section.blocks.size > 1 -%}
@@ -171,6 +185,47 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Mode-Specific Announcements"
+    },
+    {
+      "type": "text",
+      "id": "men_announcement",
+      "label": "Men Mode Announcement",
+      "default": "FREE SHIPPING ON ORDERS OVER ₹999"
+    },
+    {
+      "type": "url",
+      "id": "men_announcement_link",
+      "label": "Men Mode Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "women_announcement",
+      "label": "Women Mode Announcement",
+      "default": "✨ Free gift wrapping on all orders!"
+    },
+    {
+      "type": "url",
+      "id": "women_announcement_link",
+      "label": "Women Mode Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "kids_announcement",
+      "label": "Kids Mode Announcement",
+      "default": "🎉 Yay! Free stickers with every order! 🌈"
+    },
+    {
+      "type": "url",
+      "id": "kids_announcement_link",
+      "label": "Kids Mode Announcement Link"
+    },
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
     {
       "type": "checkbox",
       "id": "auto_rotate",

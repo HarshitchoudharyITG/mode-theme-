@@ -31,6 +31,10 @@
         <h2
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          data-mode-html
+          data-men-html="{{ section.settings.men_title | default: section.settings.title }}"
+          data-women-html="{{ section.settings.women_title | default: section.settings.title }}"
+          data-kids-html="{{ section.settings.kids_title | default: section.settings.title }}"
         >
           {{ section.settings.title }}
         </h2>
@@ -148,6 +152,21 @@
       "id": "title",
       "default": "t:sections.collection-list.settings.title.default",
       "label": "t:sections.collection-list.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "men_title",
+      "label": "Men Mode Title"
+    },
+    {
+      "type": "text",
+      "id": "women_title",
+      "label": "Women Mode Title"
+    },
+    {
+      "type": "text",
+      "id": "kids_title",
+      "label": "Kids Mode Title"
     },
     {
       "type": "select",

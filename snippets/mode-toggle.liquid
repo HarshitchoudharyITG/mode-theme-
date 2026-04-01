@@ -1,0 +1,183 @@
+{% comment %}
+  Mode Toggle — Header pill toggle for mode switching
+  Compact toggle that sits in the header for returning visitors
+{% endcomment %}
+
+<div class="mode-toggle" role="radiogroup" aria-label="Shopping mode">
+  <div class="mode-toggle__indicator"></div>
+  <button
+    type="button"
+    class="mode-toggle__btn mode-toggle__btn--men"
+    data-mode-value="men"
+    aria-pressed="false"
+    aria-label="Men mode"
+    onclick="ModeManager.applyMode('men')"
+  >
+    <span class="mode-toggle__btn-icon" aria-hidden="true">&#9794;</span>
+    <span class="mode-toggle__btn-text">Men</span>
+  </button>
+  <button
+    type="button"
+    class="mode-toggle__btn mode-toggle__btn--women"
+    data-mode-value="women"
+    aria-pressed="false"
+    aria-label="Women mode"
+    onclick="ModeManager.applyMode('women')"
+  >
+    <span class="mode-toggle__btn-icon" aria-hidden="true">&#9792;</span>
+    <span class="mode-toggle__btn-text">Women</span>
+  </button>
+  <button
+    type="button"
+    class="mode-toggle__btn mode-toggle__btn--kids"
+    data-mode-value="kids"
+    aria-pressed="false"
+    aria-label="Kids mode"
+    onclick="ModeManager.applyMode('kids')"
+  >
+    <span class="mode-toggle__btn-icon" aria-hidden="true">&#9733;</span>
+    <span class="mode-toggle__btn-text">Kids</span>
+  </button>
+</div>
+
+<style>
+  .mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 50px;
+    padding: 3px;
+    gap: 2px;
+    margin: 0 12px;
+    flex-shrink: 0;
+  }
+
+  .mode-toggle__indicator {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  [data-mode="men"] .mode-toggle__indicator {
+    background: #0f3460;
+  }
+
+  [data-mode="women"] .mode-toggle__indicator {
+    background: #b76e79;
+  }
+
+  [data-mode="kids"] .mode-toggle__indicator {
+    background: #4D96FF;
+  }
+
+  .mode-toggle__btn {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 50px;
+    background: transparent;
+    color: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    min-height: 32px;
+    font-family: inherit;
+  }
+
+  .mode-toggle__btn--active {
+    color: #ffffff;
+  }
+
+  .mode-toggle__btn:not(.mode-toggle__btn--active):hover {
+    background: rgba(128, 128, 128, 0.1);
+  }
+
+  .mode-toggle__btn-icon {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .mode-toggle__btn-text {
+    line-height: 1;
+  }
+
+  /* Dark mode (men) adjustments */
+  [data-mode="men"] .mode-toggle {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-mode="men"] .mode-toggle__btn {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  [data-mode="men"] .mode-toggle__btn--active {
+    color: #ffffff;
+  }
+
+  /* Women mode */
+  [data-mode="women"] .mode-toggle {
+    background: rgba(183, 110, 121, 0.1);
+  }
+
+  [data-mode="women"] .mode-toggle__btn {
+    color: #666;
+  }
+
+  [data-mode="women"] .mode-toggle__btn--active {
+    color: #ffffff;
+  }
+
+  /* Kids mode */
+  [data-mode="kids"] .mode-toggle {
+    background: rgba(77, 150, 255, 0.1);
+  }
+
+  [data-mode="kids"] .mode-toggle__btn {
+    color: #555;
+    font-family: 'Baloo 2', cursive;
+    font-size: 13px;
+  }
+
+  [data-mode="kids"] .mode-toggle__btn--active {
+    color: #ffffff;
+  }
+
+  [data-mode="kids"] .mode-toggle__btn--active:hover {
+    animation: kidBounce 0.3s ease;
+  }
+
+  /* Mobile: smaller */
+  @media screen and (max-width: 749px) {
+    .mode-toggle {
+      margin: 0 4px;
+    }
+
+    .mode-toggle__btn {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+
+    .mode-toggle__btn-icon {
+      display: none;
+    }
+  }
+
+  /* Very small screens */
+  @media screen and (max-width: 389px) {
+    .mode-toggle__btn {
+      padding: 4px 8px;
+      font-size: 10px;
+    }
+  }
+</style>
