@@ -69,6 +69,10 @@
                 {%- when 'heading' -%}
                   <h2
                     class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
+                    data-mode-html
+                    data-men-html="{{ block.settings.men_heading | default: block.settings.heading }}"
+                    data-women-html="{{ block.settings.women_heading | default: block.settings.heading }}"
+                    data-kids-html="{{ block.settings.kids_heading | default: block.settings.heading }}"
                     {{ block.shopify_attributes }}
                   >
                     {{ block.settings.heading }}
@@ -332,6 +336,21 @@
           "id": "heading",
           "default": "t:sections.image-with-text.blocks.heading.settings.heading.default",
           "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "men_heading",
+          "label": "Men Mode Heading"
+        },
+        {
+          "type": "text",
+          "id": "women_heading",
+          "label": "Women Mode Heading"
+        },
+        {
+          "type": "text",
+          "id": "kids_heading",
+          "label": "Kids Mode Heading"
         },
         {
           "type": "select",

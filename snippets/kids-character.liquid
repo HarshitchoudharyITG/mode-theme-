@@ -1,0 +1,33 @@
+{% comment %}
+  Kids Character SVG — Inline SVG for cart animation in Kids mode
+  A friendly cartoon character that flies to cart
+{% endcomment %}
+
+<div class="kids-character-svg" style="display:none;" aria-hidden="true">
+  <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {%- comment -%} Body {%- endcomment -%}
+    <circle cx="30" cy="32" r="18" fill="#FFD93D"/>
+    {%- comment -%} Face {%- endcomment -%}
+    <circle cx="30" cy="28" r="14" fill="#FFE88D"/>
+    {%- comment -%} Eyes {%- endcomment -%}
+    <circle cx="24" cy="26" r="3" fill="#333"/>
+    <circle cx="36" cy="26" r="3" fill="#333"/>
+    {%- comment -%} Eye highlights {%- endcomment -%}
+    <circle cx="25" cy="25" r="1" fill="#fff"/>
+    <circle cx="37" cy="25" r="1" fill="#fff"/>
+    {%- comment -%} Smile {%- endcomment -%}
+    <path d="M22 32c3 4 10 4 16 0" stroke="#333" stroke-width="2" stroke-linecap="round" fill="none"/>
+    {%- comment -%} Cheeks {%- endcomment -%}
+    <circle cx="19" cy="30" r="3" fill="#FF9B9B" opacity="0.5"/>
+    <circle cx="41" cy="30" r="3" fill="#FF9B9B" opacity="0.5"/>
+    {%- comment -%} Hat {%- endcomment -%}
+    <path d="M16 20 Q30 4 44 20" fill="#4D96FF" stroke="#4D96FF" stroke-width="1"/>
+    <circle cx="30" cy="8" r="3" fill="#FF6B6B"/>
+    {%- comment -%} Arms {%- endcomment -%}
+    <line x1="12" y1="35" x2="6" y2="28" stroke="#FFD93D" stroke-width="4" stroke-linecap="round"/>
+    <line x1="48" y1="35" x2="54" y2="28" stroke="#FFD93D" stroke-width="4" stroke-linecap="round"/>
+    {%- comment -%} Stars decoration {%- endcomment -%}
+    <polygon points="8,12 9,15 12,15 10,17 11,20 8,18 5,20 6,17 4,15 7,15" fill="#FF6B6B" opacity="0.8"/>
+    <polygon points="52,10 53,12 55,12 54,14 54,16 52,15 50,16 50,14 49,12 51,12" fill="#6BCB77" opacity="0.8"/>
+  </svg>
+</div>

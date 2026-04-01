@@ -74,8 +74,15 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
+        {%- assign men_title = section.settings.men_title | default: section.settings.title -%}
+        {%- assign women_title = section.settings.women_title | default: section.settings.title -%}
+        {%- assign kids_title = section.settings.kids_title | default: section.settings.title -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            data-mode-html
+            data-men-html="{{ men_title }}"
+            data-women-html="{{ women_title }}"
+            data-kids-html="{{ kids_title }}">
+          {{ men_title }}
         </h2>
       {%- endif -%}
       {%- if section.settings.description != blank
@@ -163,6 +170,7 @@
           {%- endfor -%}
         {%- endif -%}
       </ul>
+      {%- render 'empty-state' -%}
       {%- if show_mobile_slider or show_desktop_slider -%}
         <div class="slider-buttons">
           <button
@@ -246,6 +254,24 @@
       "id": "title",
       "default": "t:sections.featured-collection.settings.title.default",
       "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "men_title",
+      "label": "Men Mode Title",
+      "default": "TOP PICKS"
+    },
+    {
+      "type": "text",
+      "id": "women_title",
+      "label": "Women Mode Title",
+      "default": "Curated for You"
+    },
+    {
+      "type": "text",
+      "id": "kids_title",
+      "label": "Kids Mode Title",
+      "default": "Cool Stuff! ⭐"
     },
     {
       "type": "select",

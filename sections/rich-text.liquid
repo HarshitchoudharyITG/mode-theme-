@@ -21,15 +21,22 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
+              {%- assign rt_men_heading = block.settings.men_heading | default: block.settings.heading -%}
+              {%- assign rt_women_heading = block.settings.women_heading | default: block.settings.heading -%}
+              {%- assign rt_kids_heading = block.settings.kids_heading | default: block.settings.heading -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                data-mode-html
+                data-men-html="{{ rt_men_heading }}"
+                data-women-html="{{ rt_women_heading }}"
+                data-kids-html="{{ rt_kids_heading }}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.heading }}
+                {{ rt_men_heading }}
               </h2>
             {%- when 'caption' -%}
               <p
@@ -191,6 +198,21 @@
           "id": "heading",
           "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
           "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "men_heading",
+          "label": "Men Mode Heading"
+        },
+        {
+          "type": "text",
+          "id": "women_heading",
+          "label": "Women Mode Heading"
+        },
+        {
+          "type": "text",
+          "id": "kids_heading",
+          "label": "Kids Mode Heading"
         },
         {
           "type": "select",

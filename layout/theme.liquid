@@ -39,6 +39,12 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {%- comment -%} Mode Theme System — CSS & JS {%- endcomment -%}
+    {{ 'mode-themes.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'mode-switcher.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-filter.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-animator.js' | asset_url }}" defer="defer"></script>
+
     {{ content_for_header }}
 
     {%- liquid
@@ -298,10 +304,19 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}" data-mode="men">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
+
+    {%- comment -%} Mode Transition Overlay {%- endcomment -%}
+    <div class="mode-transition-overlay"></div>
+
+    {%- comment -%} Mode Selection Popup (first-time visitors) {%- endcomment -%}
+    {%- render 'mode-popup' -%}
+
+    {%- comment -%} Kids Character SVG (for cart animation) {%- endcomment -%}
+    {%- render 'kids-character' -%}
 
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
@@ -372,5 +387,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    {%- comment -%} Scroll-to-top button (styled per mode) {%- endcomment -%}
+    <button class="mode-scroll-top" aria-label="Scroll to top" type="button">&#8593;</button>
   </body>
 </html>

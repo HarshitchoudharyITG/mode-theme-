@@ -47,7 +47,11 @@
     >
       {%- unless section.settings.heading == blank -%}
         <div class="title-wrapper title-wrapper--no-top-margin{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}"
+              data-mode-html
+              data-men-html="{{ section.settings.men_heading | default: section.settings.heading }}"
+              data-women-html="{{ section.settings.women_heading | default: section.settings.heading }}"
+              data-kids-html="{{ section.settings.kids_heading | default: section.settings.heading }}">{{ section.settings.heading }}</h2>
         </div>
       {%- endunless -%}
     </div>

@@ -22,15 +22,22 @@
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
+          {%- assign nl_men_heading = block.settings.men_heading | default: block.settings.heading -%}
+          {%- assign nl_women_heading = block.settings.women_heading | default: block.settings.heading -%}
+          {%- assign nl_kids_heading = block.settings.kids_heading | default: block.settings.heading -%}
           <h2
             class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            data-mode-html
+            data-men-html="{{ nl_men_heading }}"
+            data-women-html="{{ nl_women_heading }}"
+            data-kids-html="{{ nl_kids_heading }}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            {{ block.settings.heading }}
+            {{ nl_men_heading }}
           </h2>
         {%- when 'paragraph' -%}
           <div
@@ -181,6 +188,24 @@
           "id": "heading",
           "default": "t:sections.newsletter.blocks.heading.settings.heading.default",
           "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "men_heading",
+          "label": "Men Mode Heading",
+          "default": "JOIN THE CREW"
+        },
+        {
+          "type": "text",
+          "id": "women_heading",
+          "label": "Women Mode Heading",
+          "default": "Stay in the Loop ✨"
+        },
+        {
+          "type": "text",
+          "id": "kids_heading",
+          "label": "Kids Mode Heading",
+          "default": "Join the Fun Club! 🎉"
         },
         {
           "type": "select",

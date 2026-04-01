@@ -17,7 +17,11 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
-      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          data-mode-content="text"
+          data-men-content="GET IN TOUCH"
+          data-women-content="We'd Love to Hear From You"
+          data-kids-content="Say Hi! 👋">
         {{ section.settings.heading }}
       </h2>
     {%- else -%}

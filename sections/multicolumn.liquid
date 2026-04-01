@@ -32,7 +32,11 @@
   >
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}"
+            data-mode-html
+            data-men-html="{{ section.settings.men_title | default: section.settings.title }}"
+            data-women-html="{{ section.settings.women_title | default: section.settings.title }}"
+            data-kids-html="{{ section.settings.kids_title | default: section.settings.title }}">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
@@ -204,6 +208,21 @@
       "id": "title",
       "default": "t:sections.multicolumn.settings.title.default",
       "label": "t:sections.multicolumn.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "men_title",
+      "label": "Men Mode Title"
+    },
+    {
+      "type": "text",
+      "id": "women_title",
+      "label": "Women Mode Title"
+    },
+    {
+      "type": "text",
+      "id": "kids_title",
+      "label": "Kids Mode Title"
     },
     {
       "type": "select",
